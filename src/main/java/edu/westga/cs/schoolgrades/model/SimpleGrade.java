@@ -26,7 +26,7 @@ public class SimpleGrade implements Grade {
 	 * @throws IllegalArgumentException if the value is negative
 	 */
 	public void setValue(double value) {
-		if (value < 0.0) {
+		if (value < 0.0D) {
 			throw new IllegalArgumentException("value cannot be negative");
 		}
 		this.value = value;

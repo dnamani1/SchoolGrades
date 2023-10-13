@@ -1,6 +1,6 @@
 package edu.westga.cs.schoolgrades.model.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,23 +16,37 @@ import edu.westga.cs.schoolgrades.model.SimpleGrade;
 public class SimpleGradeSetValueTest {
 	private SimpleGrade grade;
 
+	/**
+	 * This is set up
+	 * 
+	 * @throws Exception
+	 */
 	@BeforeEach
 	public void setUp() throws Exception {
 		this.grade = new SimpleGrade();
 	}
 
+	/**
+	 * Test1
+	 */
 	@Test
 	public void testSetValueToZero() {
 		this.grade.setValue(0.0);
 		assertEquals(0.0, this.grade.getValue(), 0.01);
 	}
 
+	/**
+	 * Test2
+	 */
 	@Test
 	public void testSetValueTo10() {
 		this.grade.setValue(10.0);
 		assertEquals(10.0, this.grade.getValue(), 0.01);
 	}
 
+	/**
+	 * Test3
+	 */
 	@Test
 	public void testSetValueTo20Point5() {
 		this.grade.setValue(20.5);

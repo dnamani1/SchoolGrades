@@ -17,7 +17,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private static final String GUI_RESOURCE = "edu/westga/cs/schoolgrades/views/GradesGui.fxml";
-    @Override
+    
+	@Override
     public void start(Stage primaryStage) throws Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         URL resource = classLoader.getResource(Main.GUI_RESOURCE);
