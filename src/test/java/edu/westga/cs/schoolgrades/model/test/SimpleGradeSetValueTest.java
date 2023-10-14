@@ -23,7 +23,7 @@ public class SimpleGradeSetValueTest {
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
-		this.grade = new SimpleGrade();
+		this.grade = new SimpleGrade(0.0);
 	}
 
 	/**

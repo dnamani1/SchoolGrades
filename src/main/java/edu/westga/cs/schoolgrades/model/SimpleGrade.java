@@ -10,6 +10,15 @@ public class SimpleGrade implements Grade {
 	private double value;
 
 	/**
+	 * Constructor
+	 * 
+	 * @param value d
+	 */
+	public SimpleGrade(double value) {
+		this.setValue(value);
+	}
+
+	/**
 	 * Retrieves the value of the grade.
 	 * 
 	 * @return the numerical value of the grade

@@ -42,7 +42,7 @@ public class CompositeGrade implements Grade {
 	 * Adds a grade to the list of individual student grades.
 	 * 
 	 * @param theGrade The grade to be added.
-	 * @throws IllegalArgumentException If the provided grade is null.
+	 * @throws IllegalArgumentException if the provided grade is null.
 	 */
 	public void addGrade(Grade theGrade) {
 		if (theGrade == null) {

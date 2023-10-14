@@ -25,7 +25,7 @@ public class CompositeGradeConstructorTest {
 	 * @throws Exception
 	 */
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws Exception {
 		this.strategy = gradeList -> 0.0;
 	}
 
