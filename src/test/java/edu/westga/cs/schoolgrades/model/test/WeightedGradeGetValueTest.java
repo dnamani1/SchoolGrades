@@ -15,7 +15,7 @@ import edu.westga.cs.schoolgrades.model.WeightedGrade;
  * @author Deeksha Namani
  * @version 10/14/2023
  */
-public class WeightedGradegetValueTest {
+public class WeightedGradeGetValueTest {
 	private Grade testGrade;
 
 	/**

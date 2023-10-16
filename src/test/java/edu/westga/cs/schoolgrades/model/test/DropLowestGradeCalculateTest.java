@@ -30,7 +30,7 @@ public class DropLowestGradeCalculateTest {
 	 * @throws Exception
 	 */
 	@BeforeEach
-	void setUp() throws Exception {
+	public void setUp() throws Exception {
 		SumOfGradesStrategy sumStrategy = new SumOfGradesStrategy();
 		this.studentGrade = new DropLowestGrade(sumStrategy);
 	}
