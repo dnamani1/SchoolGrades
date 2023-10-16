@@ -58,4 +58,39 @@ public class WeightedGradeConstructorTest {
 		assertThrows(IllegalArgumentException.class, () -> new WeightedGrade(mockGrade, 0.5));
 	}
 
+	/**
+	 * Test4
+	 */
+	@Test
+	public void testConstructorWithZeroWeightShouldReturnZeroValue() {
+		WeightedGrade weightedGrade = new WeightedGrade(this.testGrade, 0.0);
+		assertEquals(0, weightedGrade.getValue(), 0.01);
+	}
+
+	/**
+	 * Test5
+	 */
+	@Test
+	public void testConstructorWithWeightGreaterThanOneShouldCalculateAccordingly() {
+		WeightedGrade weightedGrade = new WeightedGrade(this.testGrade, 1.5);
+		assertEquals(135, weightedGrade.getValue(), 0.01);
+	}
+
+	/**
+	 * Test6
+	 */
+	@Test
+	public void testConstructorWithZeroWeightShouldReturnValueZero() {
+		WeightedGrade weightedGrade = new WeightedGrade(this.testGrade, 0.0);
+		assertEquals(0, weightedGrade.getValue(), 0.01);
+	}
+
+	/**
+	 * Test7
+	 */
+	@Test
+	public void testConstructorWithGreaterThanOneWeightShouldComputeCorrectly() {
+		WeightedGrade weightedGrade = new WeightedGrade(this.testGrade, 2.0);
+		assertEquals(180, weightedGrade.getValue(), 0.01);
+	}
 }

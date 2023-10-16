@@ -21,6 +21,7 @@ public class AverageOfGradesStrategy extends SumOfGradesStrategy {
 	 * @return average of all the grade.
 	 * @throws IllegalArgumentException if the provided list of grades is null.
 	 */
+	@Override
 	public double calculate(List<Grade> studentGrades) {
 		if (studentGrades == null) {
 			throw new IllegalArgumentException("grades cannot be null");

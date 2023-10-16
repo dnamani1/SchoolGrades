@@ -21,6 +21,7 @@ public class SumOfGradesStrategy implements CalculationStrategy {
 	 * @return The sum of all the grade values in the list.
 	 * @throws IllegalArgumentException if the provided list of grades is null.
 	 */
+	@Override
 	public double calculate(List<Grade> studentGrades) {
 		if (studentGrades == null) {
 			throw new IllegalArgumentException("grades cannot be null");

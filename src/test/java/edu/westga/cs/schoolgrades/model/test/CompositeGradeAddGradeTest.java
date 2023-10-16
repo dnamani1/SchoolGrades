@@ -6,9 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.schoolgrades.model.CalculationStrategy;
 import edu.westga.cs.schoolgrades.model.CompositeGrade;
 import edu.westga.cs.schoolgrades.model.Grade;
+import edu.westga.cs.schoolgrades.model.SimpleGrade;
+import edu.westga.cs.schoolgrades.model.SumOfGradesStrategy;
 
 /**
  * This test class test the addGrade method in CompositeGrade class
@@ -17,49 +18,64 @@ import edu.westga.cs.schoolgrades.model.Grade;
  * @version 10/13/2023
  */
 public class CompositeGradeAddGradeTest {
-
-	private CompositeGrade compositeGrade;
-	private Grade theGrade;
+	private CompositeGrade studentGrade;
+	private SumOfGradesStrategy sumStrategy;
 
 	/**
-	 * This is set up
+	 * This is the set up
 	 * 
 	 * @throws Exception
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
-		CalculationStrategy grades = gradeList -> 0.0;
-		this.compositeGrade = new CompositeGrade(grades);
-		this.theGrade = () -> 100.0;
+		this.sumStrategy = new SumOfGradesStrategy();
+		this.studentGrade = new CompositeGrade(this.sumStrategy);
 	}
 
 	/**
 	 * Test1
 	 */
 	@Test
-	public void shouldThrowIllegalArgumentExceptionWhenAddedGradeIsNull() {
-		assertThrows(IllegalArgumentException.class, () -> this.compositeGrade.addGrade(null));
+	public void testAddGradeWithNullShouldThrowException() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.studentGrade.addGrade(null);
+		});
 	}
 
 	/**
 	 * Test2
 	 */
 	@Test
-	public void shouldReflectAddedGradeInGetValue() {
-		CalculationStrategy sumStrategy = gradeList -> gradeList.stream().mapToDouble(Grade::getValue).sum();
-		this.compositeGrade.setStrategy(sumStrategy);
-		this.compositeGrade.addGrade(this.theGrade);
-		assertEquals(100.0, this.compositeGrade.getValue());
+	public void testAddGradeWithValidGrade() {
+		Grade grade = new SimpleGrade(90);
+		this.studentGrade.addGrade(grade);
+		assertEquals(90, this.studentGrade.getValue());
 	}
 
-//	/**
-//	 * Test3
-//	 */
-//	@Test
-//	public void shouldAddMultipleGradesSuccessfully() {
-//		this.compositeGrade.addGrade(this.theGrade);
-//		this.compositeGrade.addGrade(this.theGrade);
-//		assertEquals(2, this.compositeGrade.getValue());
-//	}
+	/**
+	 * Test3
+	 */
+	@Test
+	public void testAddMultipleGrades() {
+		Grade grade1 = new SimpleGrade(90);
+		Grade grade2 = new SimpleGrade(80);
+		Grade grade3 = new SimpleGrade(70);
 
+		this.studentGrade.addGrade(grade1);
+		this.studentGrade.addGrade(grade2);
+		this.studentGrade.addGrade(grade3);
+
+		assertEquals(240, this.studentGrade.getValue());
+	}
+
+	/**
+	 * Test4
+	 */
+	@Test
+	public void testRemoveGradeAfterAdding() {
+		Grade grade = new SimpleGrade(90);
+		this.studentGrade.addGrade(grade);
+		this.studentGrade.removeGrade(grade);
+		assertEquals(0, this.studentGrade.getValue());
+	}
 }

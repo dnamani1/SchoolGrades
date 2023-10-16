@@ -12,7 +12,7 @@ public class SimpleGrade implements Grade {
 	/**
 	 * Constructor
 	 * 
-	 * @param value d
+	 * @param value set value
 	 */
 	public SimpleGrade(double value) {
 		this.setValue(value);
