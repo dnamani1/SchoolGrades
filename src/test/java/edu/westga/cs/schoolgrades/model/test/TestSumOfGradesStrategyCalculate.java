@@ -19,30 +19,34 @@ import edu.westga.cs.schoolgrades.model.SumOfGradesStrategy;
  * @author Deeksha Namani
  * @version 10/14/2023
  */
-public class SumOfGradesStrategyCalculateTest {
+public class TestSumOfGradesStrategyCalculate {
+	private static final double DELTA = 0.001;
+	private Grade grade0;
 	private Grade grade1;
 	private Grade grade2;
-	private Grade grade3;
+
+	private List<Grade> grades;
 	private SumOfGradesStrategy strategy;
 
 	/**
-	 * This is the set up
-	 * 
-	 * @throws Exception
+	 * setup
 	 */
 	@BeforeEach
-	public void setUp() throws Exception {
+	public void setup() {
+		this.grade0 = new SimpleGrade(10);
+		this.grade1 = new SimpleGrade(20);
+		this.grade2 = new SimpleGrade(30);
+
+		this.grades = new ArrayList<Grade>();
+
 		this.strategy = new SumOfGradesStrategy();
-		this.grade1 = new SimpleGrade(85);
-		this.grade2 = new SimpleGrade(90);
-		this.grade3 = new SimpleGrade(95);
 	}
 
 	/**
 	 * Test1
 	 */
 	@Test
-	public void testCalculateShouldThrowExceptionIfListIsNull() {
+	public void shouldNotAllowNullGradesList() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			this.strategy.calculate(null);
 		});
@@ -52,26 +56,28 @@ public class SumOfGradesStrategyCalculateTest {
 	 * Test2
 	 */
 	@Test
-	public void testCalculateForEmptyListShouldReturnZero() {
-		List<Grade> grades = new ArrayList<>();
-		double result = this.strategy.calculate(grades);
-		assertEquals(0, result);
+	public void shouldGiveZeroIfNoGrades() {
+		assertEquals(0, this.strategy.calculate(this.grades), DELTA);
 	}
 
 	/**
 	 * Test3
 	 */
 	@Test
-	public void testCalculateForListOfGradesShouldReturnCorrectSum() {
-		List<Grade> grades = new ArrayList<>();
-		grades.add(this.grade1);
-		grades.add(this.grade2);
-		grades.add(this.grade3);
+	public void shouldCalculateSumOfOneGrades() {
+		this.grades.add(this.grade0);
+		assertEquals(this.grade0.getValue(), this.strategy.calculate(this.grades), DELTA);
+	}
 
-		double expectedSum = this.grade1.getValue() + this.grade2.getValue() + this.grade3.getValue();
-
-		double result = this.strategy.calculate(grades);
-		assertEquals(expectedSum, result);
+	/**
+	 * Test4
+	 */
+	@Test
+	public void shouldCalculateSumOManyGrades() {
+		this.grades.add(this.grade0);
+		this.grades.add(this.grade1);
+		this.grades.add(this.grade2);
+		assertEquals(60, this.strategy.calculate(this.grades), DELTA);
 	}
 
 }

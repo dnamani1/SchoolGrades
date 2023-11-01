@@ -7,8 +7,8 @@ package edu.westga.cs.schoolgrades.model;
  * @version 10/14/2023
  */
 public class WeightedGrade implements Grade {
-	private Grade baseGrade;
-	private double weight;
+	private final Grade baseGrade;
+	private final double weight;
 
 	/**
 	 * Initializes a new WeightedGrade with the specified base grade and weight.
@@ -18,11 +18,11 @@ public class WeightedGrade implements Grade {
 	 * @throws IllegalArgumentException if the baseGrade is null or if the weight is
 	 *                                  not between 0.0.
 	 */
-	public WeightedGrade(Grade baseGrade, double weight) {
+	public WeightedGrade(final Grade baseGrade, double weight) {
 		if (baseGrade == null) {
 			throw new IllegalArgumentException("baseGrade should not be null");
 		}
-		if (weight < 0.0D) {
+		if (weight < 0 || weight > 1) {
 			throw new IllegalArgumentException("weight should not be < 0");
 		}
 		this.baseGrade = baseGrade;

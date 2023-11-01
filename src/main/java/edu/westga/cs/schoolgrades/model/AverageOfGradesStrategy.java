@@ -26,10 +26,11 @@ public class AverageOfGradesStrategy extends SumOfGradesStrategy {
 		if (studentGrades == null) {
 			throw new IllegalArgumentException("grades cannot be null");
 		}
-		double sum = 0.0D;
-		for (int index = 0; index < studentGrades.size(); index++) {
-			sum += studentGrades.get(index).getValue();
+		if (studentGrades.isEmpty()) {
+			return 0;
 		}
+
+		double sum = super.calculate(studentGrades);
 		return sum / studentGrades.size();
 	}
 

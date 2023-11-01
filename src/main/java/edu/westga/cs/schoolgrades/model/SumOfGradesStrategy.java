@@ -12,7 +12,7 @@ import java.util.List;
  * @author Deeksha Namani
  * @version 10/14/2023
  */
-public class SumOfGradesStrategy implements CalculationStrategy {
+public class SumOfGradesStrategy implements GradeCalculationStrategy {
 
 	/**
 	 * Calculates the sum of all the grades in the provided list.
@@ -26,9 +26,9 @@ public class SumOfGradesStrategy implements CalculationStrategy {
 		if (studentGrades == null) {
 			throw new IllegalArgumentException("grades cannot be null");
 		}
-		double sum = 0.0D;
-		for (int index = 0; index < studentGrades.size(); index++) {
-			sum += studentGrades.get(index).getValue();
+		double sum = 0;
+		for (Grade grade: studentGrades) {
+			sum += grade.getValue();
 		}
 		return sum;
 	}

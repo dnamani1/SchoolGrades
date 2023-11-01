@@ -8,7 +8,7 @@ import java.util.List;
  * @author Deeksha Namani
  * @version 10/13/2023
  */
-public interface CalculationStrategy {
+public interface GradeCalculationStrategy {
 
 	/**
 	 * Calculate the result based on a list of grades.
