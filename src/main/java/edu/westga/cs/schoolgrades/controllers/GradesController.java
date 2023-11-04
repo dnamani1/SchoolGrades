@@ -4,7 +4,6 @@ import edu.westga.cs.schoolgrades.model.AverageOfGradesStrategy;
 import edu.westga.cs.schoolgrades.model.CompositeGrade;
 import edu.westga.cs.schoolgrades.model.DropLowestStrategy;
 import edu.westga.cs.schoolgrades.model.Grade;
-import edu.westga.cs.schoolgrades.model.GradeCalculationStrategy;
 import edu.westga.cs.schoolgrades.model.SimpleGrade;
 import edu.westga.cs.schoolgrades.model.SumOfGradesStrategy;
 import edu.westga.cs.schoolgrades.model.WeightedGrade;
@@ -12,6 +11,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -90,27 +90,27 @@ public class GradesController {
 	private Grade calculateQuizSubtotal() {
 		CompositeGrade theCompositeGrade = new CompositeGrade(new SumOfGradesStrategy());
 		theCompositeGrade.addAll(this.quizGrades);
-		
+
 		this.quizSubtotalProperty.set(theCompositeGrade.getValue());
-		
+
 		return theCompositeGrade;
 	}
 
 	private Grade calculateHomeworkSubtotal() {
 		CompositeGrade theCompositeGrade = new CompositeGrade(new DropLowestStrategy(new AverageOfGradesStrategy()));
 		theCompositeGrade.addAll(this.homeworkGrades);
-		
+
 		this.homeworkSubtotalProperty.set(theCompositeGrade.getValue());
-		
+
 		return theCompositeGrade;
 	}
 
 	private Grade calculateExamSubtotal() {
 		CompositeGrade theCompositeGrade = new CompositeGrade(new AverageOfGradesStrategy());
 		theCompositeGrade.addAll(this.examGrades);
-		
+
 		this.examSubtotalProperty.set(theCompositeGrade.getValue());
-		
+
 		return theCompositeGrade;
 	}
 
@@ -124,6 +124,26 @@ public class GradesController {
 		this.finalGradeProperty.set(finalGrade.getValue());
 
 		return finalGrade;
+	}
+
+	@FXML
+	public void onAddQuizMenuItemClick(ActionEvent event) {
+		this.quizGrades.add(new SimpleGrade(0.0));
+	}
+
+	@FXML
+	public void onAddHomeworkMenuItemClick(ActionEvent event) {
+		this.homeworkGrades.add(new SimpleGrade(0.0));
+	}
+
+	@FXML
+	public void onAddExamMenuItemClick(ActionEvent event) {
+		this.examGrades.add(new SimpleGrade(0.0));
+	}
+
+	@FXML
+	public void onRecalculateButtonClick(ActionEvent event) {
+		calculateFinalGrade();
 	}
 
 }
