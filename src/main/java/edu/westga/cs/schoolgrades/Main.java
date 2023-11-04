@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	private static final String GUI_RESOURCE = "edu/westga/cs/schoolgrades/views/GradesGui.fxml";
+	private static final String GUI_RESOURCE = "edu/westga/cs/schoolgrades/views/schoolGradeGUI.fxml";
     
 	@Override
     public void start(Stage primaryStage) throws Exception {

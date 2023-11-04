@@ -84,7 +84,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <TextField prefWidth="333.0">
+                  <TextField fx:id="homeworkSubtotalTextField" prefWidth="333.0">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
