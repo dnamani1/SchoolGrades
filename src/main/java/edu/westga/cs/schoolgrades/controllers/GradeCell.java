@@ -24,24 +24,34 @@ public class GradeCell implements Callback<ListView<SimpleGrade>, ListCell<Simpl
 	 */
 	@Override
 	public ListCell<SimpleGrade> call(ListView<SimpleGrade> listView) {
-		TextFieldListCell<SimpleGrade> value = new TextFieldListCell<>(new StringConverter<SimpleGrade>() {
+		TextFieldListCell<SimpleGrade> cell = new TextFieldListCell<>();
+		cell.setEditable(true);
 
-			@Override
-			public String toString(SimpleGrade object) {
-				return object == null ? "" : String.format("%.2f", object.getValue());
-			}
+		// Create the StringConverter separately
+		StringConverter<SimpleGrade> converter = createStringConverter(cell);
+		cell.setConverter(converter);
 
-			@Override
-			public SimpleGrade fromString(String string) {
-				try {
-					return new SimpleGrade(Double.parseDouble(string));
-				} catch (NumberFormatException exp) {
-					throw new IllegalArgumentException("text can not be converted");
-				}
-			}
-		});
-
-		return value;
+		return cell;
 	}
 
+	private StringConverter<SimpleGrade> createStringConverter(TextFieldListCell<SimpleGrade> cell) {
+		return new StringConverter<SimpleGrade>() {
+
+			@Override
+			public String toString(SimpleGrade grade) {
+				String value = grade == null ? "" : String.format("%.2f", grade.getValue());
+
+				return value;
+			}
+
+			@Override
+			public SimpleGrade fromString(String text) {
+				try {
+					return new SimpleGrade(Double.parseDouble(text));
+				} catch (NumberFormatException exp) {
+					throw new IllegalArgumentException("Text could not be parsed to a double", exp);
+				}
+			}
+		};
+	}
 }
