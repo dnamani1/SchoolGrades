@@ -1,18 +1,22 @@
 package edu.westga.cs.schoolgrades.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for drop lowest strategy constructor
+ * 
+ * @author lewis
+ * @version 11/5/2023
+ */
 public class TestDropLowestStrategyConstructor {
 
-	@BeforeEach
-	public void setUp() throws Exception {
-	}
-
+	/**
+	 * Test1
+	 */
 	@Test
 	public void shouldNotAllowNullChildStrategy() {
-		assertThrows(IllegalArgumentException.class, () ->{ 
+		assertThrows(IllegalArgumentException.class, () -> {
 			new DropLowestStrategy(null);
 		});
 	}

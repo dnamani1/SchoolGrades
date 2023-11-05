@@ -25,6 +25,9 @@ import javafx.util.converter.NumberStringConverter;
  * @version 11/4/2023
  */
 public class GradesController {
+	private static final int QUIZ_GRADE_MULTIPLIER = 10;
+	private static final int HOMEWORK_GRADE_MULTIPLIER = 20;
+	private static final double[] EXAM_GRADES = { 100.0, 91.0, 95.0, 98.0 };
 
 	@FXML
 	private ListView<SimpleGrade> quizzesListView;
@@ -55,6 +58,9 @@ public class GradesController {
 	private DoubleProperty examSubtotalProperty;
 	private DoubleProperty finalGradeProperty;
 
+	/**
+	 *  Initializes the controller class.
+	 */
 	@FXML
 	public void initialize() {
 		this.quizGrades = FXCollections.observableArrayList();
@@ -85,6 +91,8 @@ public class GradesController {
 				new NumberStringConverter());
 
 		this.finalGradeTextField.textProperty().bindBidirectional(this.finalGradeProperty, new NumberStringConverter());
+
+		this.addDemoGrades();
 	}
 
 	private Grade calculateQuizSubtotal() {
@@ -117,33 +125,73 @@ public class GradesController {
 	private Grade calculateFinalGrade() {
 		CompositeGrade finalGrade = new CompositeGrade(new SumOfGradesStrategy());
 
-		finalGrade.add(new WeightedGrade(calculateQuizSubtotal(), 0.2));
-		finalGrade.add(new WeightedGrade(calculateHomeworkSubtotal(), 0.3));
-		finalGrade.add(new WeightedGrade(calculateExamSubtotal(), 0.5));
+		finalGrade.add(new WeightedGrade(this.calculateQuizSubtotal(), 0.2));
+		finalGrade.add(new WeightedGrade(this.calculateHomeworkSubtotal(), 0.3));
+		finalGrade.add(new WeightedGrade(this.calculateExamSubtotal(), 0.5));
 
 		this.finalGradeProperty.set(finalGrade.getValue());
 
 		return finalGrade;
 	}
 
+	/**
+     * Called when the 'Add Quiz' menu item is clicked
+     * 
+     * @param event the action event triggered by clicking the menu item
+     */
 	@FXML
 	public void onAddQuizMenuItemClick(ActionEvent event) {
 		this.quizGrades.add(new SimpleGrade(0.0));
 	}
 
+	/**
+     * Called when the 'Homework' menu item is clicked
+     * 
+     * @param event the action event triggered by clicking the menu item
+     */
 	@FXML
 	public void onAddHomeworkMenuItemClick(ActionEvent event) {
 		this.homeworkGrades.add(new SimpleGrade(0.0));
 	}
 
+	/**
+     * Called when the 'Exam' menu item is clicked
+     * 
+     * @param event the action event triggered by clicking the menu item
+     */
 	@FXML
 	public void onAddExamMenuItemClick(ActionEvent event) {
 		this.examGrades.add(new SimpleGrade(0.0));
 	}
 
+	/**
+     * Recalculates the subtotal 
+     * 
+     * @param event the action event triggered by clicking the button
+     */
 	@FXML
 	public void onRecalculateButtonClick(ActionEvent event) {
-		calculateFinalGrade();
+		this.calculateFinalGrade();
+	}
+
+	private void addDemoGrades() {
+		for (int index = 0; index < 2; index++) {
+			this.quizGrades.add(new SimpleGrade(index * QUIZ_GRADE_MULTIPLIER));
+		}
+
+		for (int index = 5; index >= 1; index--) {
+			this.homeworkGrades.add(new SimpleGrade(index * HOMEWORK_GRADE_MULTIPLIER));
+		}
+
+		for (double examGrade : EXAM_GRADES) {
+			this.examGrades.add(new SimpleGrade(examGrade));
+		}
+
+		this.calculateQuizSubtotal();
+		this.calculateHomeworkSubtotal();
+		this.calculateExamSubtotal();
+		this.calculateFinalGrade();
+
 	}
 
 }

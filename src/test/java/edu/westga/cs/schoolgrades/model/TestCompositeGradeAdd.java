@@ -1,52 +1,69 @@
 package edu.westga.cs.schoolgrades.model;
 
-
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for Composite Grade Add
+ * 
+ * @author lewise
+ * @version 11/5/2023
+ */
 public class TestCompositeGradeAdd {
 
 	private CompositeGrade composite;
 	private Grade grade0;
 	private Grade grade1;
 	private Grade grade2;
-	
+
+	/**
+	 * Setup
+	 */
 	@BeforeEach
 	public void setup() {
-		composite = new CompositeGrade(new SumOfGradesStrategy());
-		grade0 = new SimpleGrade(10);
-		grade1 = new SimpleGrade(20);
-		grade2 = new SimpleGrade(30);
-	}
-	
-	@Test
-	public void canAddOneGrade() {
-		composite.add(grade0);
-		List<Grade> grades = composite.getGrades();
-		assertEquals(1, grades.size());
-		assertEquals(grade0, grades.get(0));
+		this.composite = new CompositeGrade(new SumOfGradesStrategy());
+		this.grade0 = new SimpleGrade(10);
+		this.grade1 = new SimpleGrade(20);
+		this.grade2 = new SimpleGrade(30);
 	}
 
+	/**
+	 * Test1
+	 */
+	@Test
+	public void canAddOneGrade() {
+		this.composite.add(this.grade0);
+		List<Grade> grades = this.composite.getGrades();
+		assertEquals(1, grades.size());
+		assertEquals(this.grade0, grades.get(0));
+	}
+
+	/**
+	 * Test2
+	 */
 	@Test
 	public void canAddManyGrades() {
-		composite.add(grade0);
-		composite.add(grade1);
-		composite.add(grade2);
-		List<Grade> grades = composite.getGrades();
+		this.composite.add(this.grade0);
+		this.composite.add(this.grade1);
+		this.composite.add(this.grade2);
+		List<Grade> grades = this.composite.getGrades();
 		assertEquals(3, grades.size());
-		assertEquals(grade0, grades.get(0));
-		assertEquals(grade1, grades.get(1));
-		assertEquals(grade2, grades.get(2));
+		assertEquals(this.grade0, grades.get(0));
+		assertEquals(this.grade1, grades.get(1));
+		assertEquals(this.grade2, grades.get(2));
 	}
-	
-	
+
+	/**
+	 * Test3
+	 */
 	@Test
 	public void shouldNotAddNullGrade() {
-		assertThrows(IllegalArgumentException.class, () ->{ 
-			composite.add(null);
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.composite.add(null);
 		});
 	}
 }

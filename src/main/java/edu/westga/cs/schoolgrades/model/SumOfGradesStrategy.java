@@ -6,7 +6,7 @@ import java.util.List;
  * Strategy for calculating a grade by summing several grades.
  * 
  * @author lewisb
- *
+ * @version 11/5/2023
  */
 public class SumOfGradesStrategy implements GradeCalculationStrategy {
 
@@ -15,9 +15,9 @@ public class SumOfGradesStrategy implements GradeCalculationStrategy {
 		if (grades == null) {
 			throw new IllegalArgumentException("grades should not be null");
 		}
-		
+
 		double sum = 0;
-		for (Grade grade: grades) {
+		for (Grade grade : grades) {
 			sum += grade.getValue();
 		}
 		return sum;

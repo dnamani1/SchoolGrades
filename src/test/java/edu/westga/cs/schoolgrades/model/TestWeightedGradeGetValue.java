@@ -1,36 +1,54 @@
 package edu.westga.cs.schoolgrades.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test
+ * 
+ * @author lewis
+ * @version 11/5/2023
+ */
 public class TestWeightedGradeGetValue {
 
 	private static final double DELTA = 0.001;
 	private WeightedGrade weightedGrade;
 	private SimpleGrade simpleGrade;
-	
+
+	/**
+	 * Setup
+	 */
 	@BeforeEach
 	public void setup() {
-		simpleGrade = new SimpleGrade(100);
+		this.simpleGrade = new SimpleGrade(100);
 	}
-	
+
+	/**
+	 * Test1
+	 */
 	@Test
 	public void shouldApplyZeroWeight() {
-		weightedGrade = new WeightedGrade(simpleGrade, 0);
-		assertEquals(0, weightedGrade.getValue(), DELTA);
+		this.weightedGrade = new WeightedGrade(this.simpleGrade, 0);
+		assertEquals(0, this.weightedGrade.getValue(), DELTA);
 	}
-	
+
+	/**
+	 * Test2
+	 */
 	@Test
 	public void shouldApplyWeightOfOne() {
-		weightedGrade = new WeightedGrade(simpleGrade, 1);
-		assertEquals(100, weightedGrade.getValue(), DELTA);
+		this.weightedGrade = new WeightedGrade(this.simpleGrade, 1);
+		assertEquals(100, this.weightedGrade.getValue(), DELTA);
 	}
-	
+
+	/**
+	 * Test3
+	 */
 	@Test
 	public void shouldApplyWeightBetweenZeroAndOne() {
-		weightedGrade = new WeightedGrade(simpleGrade, 0.5);
-		assertEquals(50, weightedGrade.getValue(), DELTA);
+		this.weightedGrade = new WeightedGrade(this.simpleGrade, 0.5);
+		assertEquals(50, this.weightedGrade.getValue(), DELTA);
 	}
 
 }

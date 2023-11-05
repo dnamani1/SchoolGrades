@@ -27,8 +27,7 @@ public class GradeCell implements Callback<ListView<SimpleGrade>, ListCell<Simpl
 		TextFieldListCell<SimpleGrade> cell = new TextFieldListCell<>();
 		cell.setEditable(true);
 
-		// Create the StringConverter separately
-		StringConverter<SimpleGrade> converter = createStringConverter(cell);
+		StringConverter<SimpleGrade> converter = this.createStringConverter(cell);
 		cell.setConverter(converter);
 
 		return cell;
@@ -39,7 +38,12 @@ public class GradeCell implements Callback<ListView<SimpleGrade>, ListCell<Simpl
 
 			@Override
 			public String toString(SimpleGrade grade) {
-				String value = grade == null ? "" : String.format("%.2f", grade.getValue());
+				String value;
+				if (grade == null) {
+				    value = "";
+				} else {
+				    value = String.format("%.2f", grade.getValue());
+				}
 
 				return value;
 			}

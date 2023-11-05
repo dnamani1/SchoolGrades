@@ -3,10 +3,11 @@ package edu.westga.cs.schoolgrades.model;
 import java.util.List;
 
 /**
- * Interface for strategies for calculating an aggregate grade based on several constituent grades.
+ * Interface for strategies for calculating an aggregate grade based on several
+ * constituent grades.
  * 
  * @author lewisb
- *
+ * @version 11/05/2023
  */
 public interface GradeCalculationStrategy {
 	/**
