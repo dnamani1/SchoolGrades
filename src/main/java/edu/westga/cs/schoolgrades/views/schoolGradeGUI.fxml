@@ -100,9 +100,6 @@
 						</Label>
 						<TextField fx:id="homeworkSubtotalTextField"
 							prefWidth="333.0">
-							<padding>
-								<Insets top="10.0" />
-							</padding>
 						</TextField>
 					</children>
 				</VBox>

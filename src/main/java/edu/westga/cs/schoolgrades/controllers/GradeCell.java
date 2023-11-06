@@ -25,12 +25,12 @@ public class GradeCell implements Callback<ListView<SimpleGrade>, ListCell<Simpl
 	@Override
 	public ListCell<SimpleGrade> call(ListView<SimpleGrade> listView) {
 		TextFieldListCell<SimpleGrade> cell = new TextFieldListCell<>();
-		cell.setEditable(true);
+        cell.setEditable(true);
 
-		StringConverter<SimpleGrade> converter = this.createStringConverter(cell);
-		cell.setConverter(converter);
+        StringConverter<SimpleGrade> converter = this.createStringConverter(cell);
+        cell.setConverter(converter);
 
-		return cell;
+        return cell;
 	}
 
 	private StringConverter<SimpleGrade> createStringConverter(TextFieldListCell<SimpleGrade> cell) {

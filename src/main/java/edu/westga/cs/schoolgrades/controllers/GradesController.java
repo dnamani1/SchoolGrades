@@ -25,9 +25,6 @@ import javafx.util.converter.NumberStringConverter;
  * @version 11/4/2023
  */
 public class GradesController {
-	private static final int QUIZ_GRADE_MULTIPLIER = 10;
-	private static final int HOMEWORK_GRADE_MULTIPLIER = 20;
-	private static final double[] EXAM_GRADES = { 100.0, 91.0, 95.0, 98.0 };
 
 	@FXML
 	private ListView<SimpleGrade> quizzesListView;
@@ -175,23 +172,26 @@ public class GradesController {
 	}
 
 	private void addDemoGrades() {
-		for (int index = 0; index < 2; index++) {
-			this.quizGrades.add(new SimpleGrade(index * QUIZ_GRADE_MULTIPLIER));
-		}
 
-		for (int index = 5; index >= 1; index--) {
-			this.homeworkGrades.add(new SimpleGrade(index * HOMEWORK_GRADE_MULTIPLIER));
-		}
+	    double[] quizGradesArray = {20.0, 15.0, 18.0, 10.0};
+	    for (double grade : quizGradesArray) {
+	        this.quizGrades.add(new SimpleGrade(grade));
+	    }
 
-		for (double examGrade : EXAM_GRADES) {
-			this.examGrades.add(new SimpleGrade(examGrade));
-		}
+	    double[] homeworkGradesArray = {98.0, 75.0, 44.0, 86.0};
+	    for (double grade : homeworkGradesArray) {
+	        this.homeworkGrades.add(new SimpleGrade(grade));
+	    }
 
-		this.calculateQuizSubtotal();
-		this.calculateHomeworkSubtotal();
-		this.calculateExamSubtotal();
-		this.calculateFinalGrade();
+	    double[] examGradesArray = {90.0, 93.0};
+	    for (double grade : examGradesArray) {
+	        this.examGrades.add(new SimpleGrade(grade));
+	    }
 
+	    this.quizSubtotalProperty.set(0);
+	    this.homeworkSubtotalProperty.set(0);
+	    this.examSubtotalProperty.set(0);
+	    this.finalGradeProperty.set(0);
 	}
 
 }
