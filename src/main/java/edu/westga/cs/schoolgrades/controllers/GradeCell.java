@@ -51,7 +51,10 @@ public class GradeCell implements Callback<ListView<SimpleGrade>, ListCell<Simpl
 			@Override
 			public SimpleGrade fromString(String text) {
 				try {
-					return new SimpleGrade(Double.parseDouble(text));
+					SimpleGrade grade = cell.getItem();
+					grade.setValue(Double.parseDouble(text));
+					return grade;
+
 				} catch (NumberFormatException exp) {
 					throw new IllegalArgumentException("Text could not be parsed to a double", exp);
 				}

@@ -139,6 +139,7 @@ public class GradesController {
 	@FXML
 	public void onAddQuizMenuItemClick(ActionEvent event) {
 		this.quizGrades.add(new SimpleGrade(0.0));
+
 	}
 
 	/**
@@ -168,7 +169,11 @@ public class GradesController {
      */
 	@FXML
 	public void onRecalculateButtonClick(ActionEvent event) {
-		this.calculateFinalGrade();
+		this.calculateQuizSubtotal();
+	    this.calculateHomeworkSubtotal();
+	    this.calculateExamSubtotal();
+	    this.calculateFinalGrade();
+
 	}
 
 	private void addDemoGrades() {
