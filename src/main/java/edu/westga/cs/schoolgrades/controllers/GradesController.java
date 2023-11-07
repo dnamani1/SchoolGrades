@@ -90,6 +90,7 @@ public class GradesController {
 		this.finalGradeTextField.textProperty().bindBidirectional(this.finalGradeProperty, new NumberStringConverter());
 
 		this.addDemoGrades();
+		
 	}
 
 	private Grade calculateQuizSubtotal() {
