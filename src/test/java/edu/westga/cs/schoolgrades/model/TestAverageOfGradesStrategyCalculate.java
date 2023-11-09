@@ -1,6 +1,8 @@
 package edu.westga.cs.schoolgrades.model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +19,9 @@ import java.util.List;
 public class TestAverageOfGradesStrategyCalculate {
 
 	private static final double DELTA = 0.001;
-	private Grade grade0;
-	private Grade grade1;
-	private Grade grade2;
+	private Grade mockGrade0;
+	private Grade mockGrade1;
+	private Grade mockGrade2;
 
 	private List<Grade> grades;
 
@@ -30,9 +32,13 @@ public class TestAverageOfGradesStrategyCalculate {
 	 */
 	@BeforeEach
 	public void setup() {
-		this.grade0 = new SimpleGrade(10);
-		this.grade1 = new SimpleGrade(20);
-		this.grade2 = new SimpleGrade(30);
+		this.mockGrade0 = mock(Grade.class);
+		this.mockGrade1 = mock(Grade.class);
+		this.mockGrade2 = mock(Grade.class);
+
+		when(this.mockGrade0.getValue()).thenReturn(10.0);
+        when(this.mockGrade1.getValue()).thenReturn(20.0);
+        when(this.mockGrade2.getValue()).thenReturn(30.0);
 
 		this.grades = new ArrayList<Grade>();
 
@@ -62,8 +68,8 @@ public class TestAverageOfGradesStrategyCalculate {
 	 */
 	@Test
 	public void shouldCalculateAverageOfOneGrades() {
-		this.grades.add(this.grade0);
-		assertEquals(this.grade0.getValue(), this.strategy.calculate(this.grades), DELTA);
+		this.grades.add(this.mockGrade0);
+		assertEquals(this.mockGrade0.getValue(), this.strategy.calculate(this.grades), DELTA);
 	}
 
 	/**
@@ -71,9 +77,9 @@ public class TestAverageOfGradesStrategyCalculate {
 	 */
 	@Test
 	public void shouldCalculateSumOManyGrades() {
-		this.grades.add(this.grade0);
-		this.grades.add(this.grade1);
-		this.grades.add(this.grade2);
+		this.grades.add(this.mockGrade0);
+		this.grades.add(this.mockGrade1);
+		this.grades.add(this.mockGrade2);
 		assertEquals(20, this.strategy.calculate(this.grades), DELTA);
 	}
 

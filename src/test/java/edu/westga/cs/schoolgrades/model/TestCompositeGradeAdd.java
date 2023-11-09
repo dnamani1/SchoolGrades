@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 public class TestCompositeGradeAdd {
 
 	private CompositeGrade composite;
-	private Grade grade0;
-	private Grade grade1;
-	private Grade grade2;
+	private Grade mockGrade0;
+	private Grade mockGrade1;
+	private Grade mockGrade2;
 
 	/**
 	 * Setup
@@ -28,9 +28,9 @@ public class TestCompositeGradeAdd {
 	@BeforeEach
 	public void setup() {
 		this.composite = new CompositeGrade(mock(GradeCalculationStrategy.class));
-        this.grade0 = mock(Grade.class);
-        this.grade1 = mock(Grade.class);
-        this.grade2 = mock(Grade.class);
+        this.mockGrade0 = mock(Grade.class);
+        this.mockGrade1 = mock(Grade.class);
+        this.mockGrade2 = mock(Grade.class);
 	}
 
 	/**
@@ -38,10 +38,10 @@ public class TestCompositeGradeAdd {
 	 */
 	@Test
 	public void canAddOneGrade() {
-		this.composite.add(this.grade0);
+		this.composite.add(this.mockGrade0);
 		List<Grade> grades = this.composite.getGrades();
 		assertEquals(1, grades.size());
-		assertEquals(this.grade0, grades.get(0));
+		assertEquals(this.mockGrade0, grades.get(0));
 	}
 
 	/**
@@ -49,14 +49,14 @@ public class TestCompositeGradeAdd {
 	 */
 	@Test
 	public void canAddManyGrades() {
-		this.composite.add(this.grade0);
-		this.composite.add(this.grade1);
-		this.composite.add(this.grade2);
+		this.composite.add(this.mockGrade0);
+		this.composite.add(this.mockGrade1);
+		this.composite.add(this.mockGrade2);
 		List<Grade> grades = this.composite.getGrades();
 		assertEquals(3, grades.size());
-		assertEquals(this.grade0, grades.get(0));
-		assertEquals(this.grade1, grades.get(1));
-		assertEquals(this.grade2, grades.get(2));
+		assertEquals(this.mockGrade0, grades.get(0));
+		assertEquals(this.mockGrade1, grades.get(1));
+		assertEquals(this.mockGrade2, grades.get(2));
 	}
 
 	/**
