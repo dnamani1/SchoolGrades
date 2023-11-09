@@ -19,6 +19,7 @@
   		<groupId>org.mockito</groupId>
   		<artifactId>mockito-core</artifactId>
   		<version>3.3.0</version>
+  		<type>jar</type>
   		<scope>test</scope>
   	</dependency>
   </dependencies>

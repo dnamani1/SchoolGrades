@@ -1,6 +1,7 @@
 package edu.westga.cs.schoolgrades.model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +28,9 @@ public class TestCompositeGradeConstructor {
 	 */
 	@Test
 	public void shouldHaveNoGradesWhenCreated() {
-		CompositeGrade grade = new CompositeGrade(new SumOfGradesStrategy());
-		assertTrue(grade.getGrades().isEmpty());
+		GradeCalculationStrategy mockStrategy = mock(GradeCalculationStrategy.class);
+        CompositeGrade grade = new CompositeGrade(mockStrategy);
+        assertTrue(grade.getGrades().isEmpty());
 	}
 
 }
