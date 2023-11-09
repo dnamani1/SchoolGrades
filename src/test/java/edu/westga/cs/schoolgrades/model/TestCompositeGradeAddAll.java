@@ -6,6 +6,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,10 +30,10 @@ public class TestCompositeGradeAddAll {
 	 */
 	@BeforeEach
 	public void setup() {
-		this.composite = new CompositeGrade(new SumOfGradesStrategy());
-		this.grade0 = new SimpleGrade(10);
-		this.grade1 = new SimpleGrade(20);
-		this.grade2 = new SimpleGrade(30);
+		this.composite = new CompositeGrade(mock(GradeCalculationStrategy.class));
+		this.grade0 = mock(Grade.class);
+		this.grade1 = mock(Grade.class);
+		this.grade2 = mock(Grade.class);
 		this.list = new ArrayList<Grade>();
 	}
 
